@@ -1,54 +1,56 @@
 <template>
     <ul class="list-unstyled ps-0">
         <li class="menu-item" v-for="(link, index) in links" :key="index" :class="link.children ? 'sub-menu' : ''">
-            <router-link tag="button" :to="link.to" class="btn-menu" active-class="active">
-                <i :class="link.icon"></i>
-                <span>{{ link.name }}</span>
-            </router-link>
-            <ul class="list-unstyled ps-0" v-show="sub">
-                <li v-for="(l, index) in link.children" :key="index">
-                    <router-link tag="button" :to="l.to" class="btn-menu"><span>{{ l.name }}</span></router-link>
-                </li>
-            </ul>
+            <span v-if="link.to">
+                <router-link tag="button" :to="link.to" class="btn-menu" active-class="active">
+                    <i :class="link.icon"></i>
+                    <span>{{ link.name }}</span>
+                </router-link>
+            </span>
+            <span v-else>
+                <button class="btn-menu" @click="openSub(index, $event)">
+                    <i :class="link.icon"></i>
+                    <span>{{ link.name }}</span>
+                </button>
+            </span>
+            <transition name="slide">
+                <ul class="list-unstyled ps-0" v-show="link.sub">
+                    <li v-for="(l, index) in link.children" :key="index">
+                        <router-link tag="button" :to="l.to" class="btn-menu"><span>{{ l.name }}</span></router-link>
+                    </li>
+                </ul>
+            </transition>
         </li>
     </ul>
 </template>
 <script>
+// import axios from 'axios';
 export default {
     data() {
         return {
-            sub: false,
-            links: [
-                { name: 'Kontrol Paneli', to: '/dashboard', icon: 'fas fa-home' },
-                { name: 'Müşteriler', to: '/#dashboard', icon: 'fas fa-user' },
-                {
-                    name: 'Satışlar', to: '/sales', icon: 'fas fa-balance-scale', children: [
-                        { name: 'Teklifler', to: '/offers' },
-                        { name: 'Proformalar', to: '/proforma' },
-                    ]
-                },
-                { name: 'Abonelikler', to: '/subscriptions', icon: 'fas fa-redo' },
-                { name: 'Harcamalar', to: '/expenses', icon: 'far fa-file-alt' },
-                { name: 'Süzleşmeler', to: '/contracts', icon: 'far fa-file' },
-                { name: 'Projeler', to: '/projects', icon: 'fas fa-bars' },
-                { name: 'Görevler', to: '/tasks', icon: 'fas fa-tasks' },
-
-                { name: 'Destek', to: '/info', icon: 'fas fa-ticket-alt' },
-                { name: 'Fırsatlar', to: '/opportunities', icon: 'fas fa-tty' },
-                { name: 'Estimate Request', to: '/estimate', icon: 'far fa-list-alt' },
-                { name: 'Bilgi Merkezi', to: '/inforcenter', icon: 'far fa-folder-open' },
-                {
-                    name: 'Uygulamalar', to: '/apps', icon: 'fas fa-cogs', children: [
-                        { name: 'Medya', to: '/media' },
-                        { name: 'Toplu Pdf Dışarı Aktar', to: '/pdf' },
-                        { name: 'Takvim', to: '/calendar' },
-                        { name: 'Duyrular', to: '/announcements' },
-                    ]
-                },
-
-            ]
+            links: []
         }
     },
+    async mounted() {
+        this.$axios.get("/links")
+            .then(response => {
+                this.links = response.data
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
+    methods: {
+        openSub(index, event) {
+            if (this.links[index].sub) {
+                this.links[index].sub = false;
+                event.target.classList.remove('active')
+            } else {
+                this.links[index].sub = true;
+                event.target.classList.add('active')
+            }
+        }
+    }
 }
 </script>
 <style scoped>
@@ -77,7 +79,7 @@ export default {
     font-size: 15px;
 }
 
-.sub-menu>.btn-menu::after {
+.sub-menu span>.btn-menu::after {
     position: absolute;
     font-family: "Font Awesome Free 5";
     content: "\f104";
@@ -101,5 +103,23 @@ export default {
     font-weight: 500;
     font-size: normal;
     padding-left: 28px;
+}
+
+/* we will explain what these classes do next! */
+.slide-enter-active,
+.slide-leave-active {
+    transition: max-height 0.3s;
+}
+
+.slide-enter-to,
+.slide-leave {
+    overflow: hidden;
+    max-height: 1000px;
+}
+
+.slide-enter,
+.slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
 }
 </style>

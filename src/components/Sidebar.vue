@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div id="aside" :class="$store.state.aside ? 'aside-on' : 'aside-off'">
         <div class="user-info p-2">
@@ -21,7 +22,7 @@ export default {
     float: left;
     left: 0;
     position: absolute;
-    top: -24px;
+    top: -12px;
     -webkit-transition: all .5s ease 0s;
     transition: all .5s ease 0s;
     background-color: #626f80;

@@ -4,12 +4,14 @@
             <h3 class="mb-2 mt-4">Login</h3>
         </template>
         <b-form>
-            <b-form-group id="input-group-1" label="Email address:" label-for="email" class="mb-3" label-class="login-label">
+            <b-form-group id="input-group-1" label="Email address:" label-for="email" class="mb-3"
+                label-class="login-label">
                 <b-form-input id="email" v-model="form.email" type="email" required>
                 </b-form-input>
             </b-form-group>
 
-            <b-form-group id="input-group-2" label="Password:" label-for="password" class="mb-3" label-class="login-label">
+            <b-form-group id="input-group-2" label="Password:" label-for="password" class="mb-3"
+                label-class="login-label">
                 <b-form-input id="password" v-model="form.password" required></b-form-input>
             </b-form-group>
 
@@ -19,7 +21,7 @@
                 </b-form-checkbox-group>
             </b-form-group>
             <router-link tag="span" to="/admin" class="w-100">
-                <b-button variant="primary" class="w-100">Login</b-button>
+                <b-button variant="primary" class="w-100 text-light" @click="userLogin">Login</b-button>
             </router-link>
         </b-form>
         <template #footer>
@@ -38,6 +40,23 @@ export default {
             },
         }
     },
+    mounted() {
+        this.$axios.get("/users")
+            .then(response => {
+                this.$store.state.userInfo = response.data;
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
+    methods: {
+        userLogin() {
+            if (this.form.email == this.$store.state.userInfo.email && this.form.password == this.$store.state.userInfo.password) {
+                return this.$store.state.isLogin = true;
+            }
+            return false;
+        }
+    }
 }
 </script>
 <style scoped>
@@ -80,18 +99,20 @@ export default {
     font-size: 24px;
     color: #6a6c6f;
 }
-.forgot{
+
+.forgot {
     font-size: 13px;
     text-decoration: none;
     color: #337ab7;
 }
-.forgot:hover{
+
+.forgot:hover {
     color: #444;
     text-decoration: underline;
 }
 </style>
 <style>
-.login-label{
+.login-label {
     font-size: 13px;
     font-weight: 400;
     color: #6a6c6f;

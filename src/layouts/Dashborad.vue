@@ -1,7 +1,7 @@
 <template>
     <b-container fluid class="mt-4">
         <b-row class="pb-4">
-            <b-col md="4" lg="4" xl="3" v-for="(qs, index) in quick_statistics" :key="index">
+            <b-col md="3" lg="3" xl="3" v-for="(qs, index) in quick_statistics" :key="index">
                 <StatsCard>
                     <i :class="qs.icon" slot="icon"></i>
                     <span slot="text">{{ qs.text }}</span>
@@ -11,8 +11,11 @@
                     <b-progress variant="secondary" :value="qs.value" :max="qs.max" height="5px" slot="progress"></b-progress>
                 </StatsCard>
             </b-col>
-            <b-col md="8">
+            <b-col md="8" class="">
                 <UserPanel></UserPanel>
+            </b-col>
+            <b-col md="8">
+                <Calendar></Calendar>
             </b-col>
             
         </b-row>
@@ -21,8 +24,8 @@
 <script>
 import StatsCard from "../components/StatsCard.vue";
 import UserPanel from "../components/UserPanel.vue";
+import Calendar from "@/components/Calendar.vue";
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name:'Dashborad',
     props: {
         data: {
@@ -45,6 +48,6 @@ export default {
             ]
         }
     },
-    components: { StatsCard, UserPanel }
+    components: { StatsCard, UserPanel, Calendar }
 }
 </script>

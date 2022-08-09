@@ -1,9 +1,18 @@
 export const languagetMixin = {
     data() {
         return {
-            languages: ['Türkçe', 'İngilizce', 'Almanca', 'Rusça', 'Türkçe', 'İngilizce', 'Almanca', 'Rusça', 'Türkçe', 'İngilizce', 'Almanca', 'Rusça'],
+            languages: [],
             search_lang: '',
         }
+    },
+    mounted() {
+        this.$axios.get("/languages")
+            .then(response => {
+                this.languages = response.data
+            })
+            .catch(error => {
+                console.log(error)
+            })
     },
     computed: {
         filtered() {

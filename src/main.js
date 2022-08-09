@@ -6,8 +6,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 import { store } from "./store/store";
+import vuetify from './plugins/vuetify'
+import axios from 'axios'
 
-//TODO mport axios from 'axios'
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:3000"
+});
+Vue.prototype.$axios = axiosInstance;
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -35,5 +40,6 @@ Vue.filter('toLowerCase', (val) => {
 new Vue({
   router,
   store,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')

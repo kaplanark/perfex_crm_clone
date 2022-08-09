@@ -12,13 +12,20 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue';
+import { store } from "./../store/store";
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name: "Admin",
     data() {
         return {};
     },
-    components: { Navbar, Sidebar }
+    components: { Navbar, Sidebar },
+    beforeRouteEnter(to, from, next) {
+        store.state.isLogin && next()
+    },
+    beforeRouteLeave(to, form, next) {
+        store.state.isLogin = false;
+        next();
+    }
 }
 </script>
 <style scoped>
@@ -26,9 +33,11 @@ export default {
     background-color: #e3e8ee;
     min-height: 100vh;
 }
-.admin-wrapper{
+
+.admin-wrapper {
     position: relative;
 }
+
 .main {
     transition: all .5s ease 0s;
     min-height: calc(100vh - 86px);

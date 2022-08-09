@@ -29,7 +29,7 @@
                 </b-form-checkbox-group>
             </b-form-group>
             <router-link tag="span" to="/admin" class="w-100">
-                <b-button variant="primary" class="w-100">Login</b-button>
+                <b-button variant="primary" class="w-100 text-light">Login</b-button>
             </router-link>
 
         </b-form>
