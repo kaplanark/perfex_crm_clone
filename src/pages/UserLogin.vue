@@ -31,7 +31,7 @@ export default {
     components: { UserLoginForm },
     data() {
         return {
-            date: year
+            date: year,
         }
     },
 }

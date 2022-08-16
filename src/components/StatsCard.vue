@@ -1,5 +1,5 @@
 <template>
-    <b-card footer-tag="footer" class="shadow-sm border-0 mb-4">
+    <b-card footer-tag="footer" class="shadow-sm border-0">
         <b-card-text class="card-info">
             <slot name="icon"></slot>
             <slot name="text"></slot>

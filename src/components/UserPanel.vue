@@ -1,5 +1,5 @@
 <template>
-    <b-card no-body class="border-0">
+    <b-card no-body class="border-0 h-100">
         <b-tabs content-class="mt-3" fill lazy>
             <b-tab active title-link-class="use-tab-link">
                 <template #title>

@@ -5,12 +5,20 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        isAuth: true,
         aside: true,
-        isLogin:false,
+        authentication: false,
         userInfo: {
+            username: null,
             email: null,
-            password:null,
+            password: null,
         }
     },
+    getters: {
+        isQuit(state) {
+            return state.authentication = false;
+        },
+        isLogin(state) {
+            return state.authentication = true;
+        }
+    }
 })

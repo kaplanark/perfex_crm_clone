@@ -1,6 +1,6 @@
 <template>
     <div id="admin">
-        <Navbar></Navbar>
+        <Navbar :username="username"></Navbar>
         <div class="admin-wrapper" :class="$store.state.aside ? 'open-sidebar' : ''">
             <Sidebar></Sidebar>
             <div class="main">
@@ -16,15 +16,13 @@ import { store } from "./../store/store";
 export default {
     name: "Admin",
     data() {
-        return {};
+        return {
+            username: this.$store.state.userInfo.username
+        };
     },
     components: { Navbar, Sidebar },
     beforeRouteEnter(to, from, next) {
-        store.state.isLogin && next()
-    },
-    beforeRouteLeave(to, form, next) {
-        store.state.isLogin = false;
-        next();
+        store.state.authentication && next()
     }
 }
 </script>
@@ -43,7 +41,9 @@ export default {
     min-height: calc(100vh - 86px);
 }
 
-.open-sidebar .main {
-    padding-left: 210px;
+@media (min-width:992px) {
+    .open-sidebar .main {
+        padding-left: 210px;
+    }
 }
 </style>

@@ -19,8 +19,8 @@
                                     class="rounded-circle">
                             </a>
                         </template>
-                        <b-dropdown-item href="#">Profile</b-dropdown-item>
-                        <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                        <b-dropdown-item href="#">{{username}}</b-dropdown-item>
+                        <b-dropdown-item href="#" @click="quit">Çıkış Yap</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
                 <b-navbar-nav class="navbar-nav-links">
@@ -35,7 +35,15 @@
 </template>
 <script>
 export default {
-
+    props:['username'],
+    methods: {
+        quit(){
+            if(confirm('Çıkış yapmak üzeresiniz')){
+                this.$store.getters.isQuit
+                this.$router.push('/authentication');
+            }
+        }
+    },
 }
 </script>
 <style scoped>

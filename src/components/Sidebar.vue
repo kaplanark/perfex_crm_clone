@@ -22,10 +22,11 @@ export default {
     float: left;
     left: 0;
     position: absolute;
-    top: -12px;
+    top: -16px;
     -webkit-transition: all .5s ease 0s;
     transition: all .5s ease 0s;
     background-color: #626f80;
+    z-index: 99;
 }
 
 .aside-off {

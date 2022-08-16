@@ -6,13 +6,13 @@
         <b-form>
             <b-form-group id="input-group-1" label="Email address:" label-for="email" class="mb-3"
                 label-class="login-label">
-                <b-form-input id="email" v-model="form.email" type="email" required>
+                <b-form-input id="email" v-model="form.email" type="email" required :disabled="$store.state.authentication">
                 </b-form-input>
             </b-form-group>
 
             <b-form-group id="input-group-2" label="Password:" label-for="password" class="mb-3"
                 label-class="login-label">
-                <b-form-input id="password" v-model="form.password" required></b-form-input>
+                <b-form-input id="password" v-model="form.password" required :disabled="$store.state.authentication"></b-form-input>
             </b-form-group>
 
             <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }" class="mb-3" label-class="login-label">
@@ -20,12 +20,13 @@
                     <b-form-checkbox value="me" class="login-label">Remember me</b-form-checkbox>
                 </b-form-checkbox-group>
             </b-form-group>
-            <router-link tag="span" to="/admin" class="w-100">
-                <b-button variant="primary" class="w-100 text-light" @click="userLogin">Login</b-button>
-            </router-link>
+            <b-button v-if="$store.state.authentication" variant="secondary" class="w-100 text-light" @click="$router.push('/admin')">
+                Login</b-button>
+            <b-button v-else variant="primary" class="w-100 text-light" @click="userLogin">Login
+            </b-button>
         </b-form>
         <template #footer>
-            <a href="" class="forgot">Forgot Password?</a>
+            <a href="" class="forgot">Parolamı unuttum</a>
         </template>
     </b-card>
 </template>
@@ -52,7 +53,8 @@ export default {
     methods: {
         userLogin() {
             if (this.form.email == this.$store.state.userInfo.email && this.form.password == this.$store.state.userInfo.password) {
-                return this.$store.state.isLogin = true;
+                this.$store.getters.isLogin
+                this.$router.push('/admin')
             }
             return false;
         }

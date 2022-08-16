@@ -12,7 +12,6 @@
 <script>
 import LoginForm from '@/components/LoginForm.vue';
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name:"Login",
     components: { LoginForm }
 }

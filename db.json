@@ -1,5 +1,9 @@
 {
-  "users": { "email": "kaplan.arkan@outlook.com", "password": "59ayx9sd.5445" },
+  "users": {
+    "username": "kaplanark",
+    "email": "kaplan.arkan@outlook.com",
+    "password": "59ayx9sd.5445"
+  },
   "links": [
     { "name": "Kontrol Paneli", "to": "/dashboard", "icon": "fas fa-home" },
     { "name": "Müşteriler", "to": "/customers", "icon": "fas fa-user" },
