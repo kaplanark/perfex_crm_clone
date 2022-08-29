@@ -28,7 +28,48 @@
 export default {
     data() {
         return {
-            links: []
+            links: [
+                { "name": "Kontrol Paneli", "to": "/dashboard", "icon": "fas fa-home" },
+                { "name": "Müşteriler", "to": "/customers", "icon": "fas fa-user" },
+                {
+                    "name": "Satışlar",
+                    "icon": "fas fa-balance-scale",
+                    "sub": false,
+                    "children": [
+                        { "name": "Teklifler", "to": "/offers" },
+                        { "name": "Proformalar", "to": "/proforma" }
+                    ]
+                },
+                { "name": "Abonelikler", "to": "/subscriptions", "icon": "fas fa-redo" },
+                { "name": "Harcamalar", "to": "/expenses", "icon": "far fa-file-alt" },
+                { "name": "Süzleşmeler", "to": "/contracts", "icon": "far fa-file" },
+                { "name": "Projeler", "to": "/projects", "icon": "fas fa-bars" },
+                { "name": "Görevler", "to": "/tasks", "icon": "fas fa-tasks" },
+
+                { "name": "Destek", "to": "/tickets", "icon": "fas fa-ticket-alt" },
+                { "name": "Fırsatlar", "to": "/opportunities", "icon": "fas fa-tty" },
+                {
+                    "name": "Estimate Request",
+                    "to": "/estimate",
+                    "icon": "far fa-list-alt"
+                },
+                {
+                    "name": "Bilgi Merkezi",
+                    "to": "/inforcenter",
+                    "icon": "far fa-folder-open"
+                },
+                {
+                    "name": "Uygulamalar",
+                    "icon": "fas fa-cogs",
+                    "sub": false,
+                    "children": [
+                        { "name": "Medya", "to": "/media" },
+                        { "name": "Toplu Pdf Dışarı Aktar", "to": "/pdf" },
+                        { "name": "Takvim", "to": "/calendar" },
+                        { "name": "Duyrular", "to": "/announcements" }
+                    ]
+                }
+            ],
         }
     },
     async mounted() {
