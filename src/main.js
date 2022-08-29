@@ -5,7 +5,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import VueRouter from 'vue-router'
 import { routes } from './routes'
-import { store } from "./store/store";
+import { store } from "./store/index";
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
 

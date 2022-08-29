@@ -6,7 +6,11 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         aside: true,
-        authentication: false,
+        confirm:{
+            value:false,
+            next:false
+        },
+        authentication: true,
         userInfo: {
             username: null,
             email: null,

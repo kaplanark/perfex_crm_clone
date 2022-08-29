@@ -7,12 +7,20 @@
                 <router-view></router-view>
             </div>
         </div>
+        <SquareModal></SquareModal>
+
+        <b-modal v-model="$store.state.confirm.value">
+        <template>
+
+        </template>
+        </b-modal>
     </div>
 </template>
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue';
-import { store } from "./../store/store";
+import { store } from "../store/index";
+import SquareModal from "../components/SquareModal.vue";
 export default {
     name: "Admin",
     data() {
@@ -20,7 +28,7 @@ export default {
             username: this.$store.state.userInfo.username
         };
     },
-    components: { Navbar, Sidebar },
+    components: { Navbar, Sidebar, SquareModal},
     beforeRouteEnter(to, from, next) {
         store.state.authentication && next()
     }

@@ -1,113 +1,82 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    :items-per-page="5"
-    class="elevation-1"
-  ></v-data-table>
+  <v-data-table :headers="headers" :items="desserts" multi-sort class="elevation-1" :search="search">
+    <template v-slot:top>
+      <div class="card border-0 table-top-card my-2">
+        <div class="btn-group">
+          <b-dropdown id="dropdown-left" text="Tümü" variant="outline-primary" size="sm">
+            <b-dropdown-item>10</b-dropdown-item>
+            <b-dropdown-item>20</b-dropdown-item>
+          </b-dropdown>
+          <button class="btn btn-outline-primary btn-sm">Dışa Aktar</button>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+          <input type="text" placeholder="Ara:" class="form-control form-control-sm" v-model="search" style="width: 30%;">
+        </div>
+      </div>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
-      }
-    },
+export default {
+  data() {
+    return {
+      search: '',
+      appearance: 'Bu Ay',
+      headers: [
+        {
+          text: '#',
+          align: 'start',
+          sortable: false,
+          value: 'index',
+        },
+        { text: 'Adı', value: 'name' },
+        { text: 'Durum', value: 'status' },
+        { text: 'Başlama Tarihi', value: 'date' },
+        { text: 'Etiketler', value: 'tags' },
+        { text: 'Öncelik', value: 'priority' },
+      ],
+      desserts: [
+        {
+          index:1,
+          name: 'Test Görev',
+          status: 'Devam Eden',
+          date: '2022-08-23',
+          tags: '',
+          priority: 'Orta',
+        },
+        {
+          index:2,
+          name: 'Test Görev 2',
+          status: 'Devam Eden',
+          date: '2022-08-23',
+          tags: '',
+          priority: 'Orta',
+        },
+        {
+          index:3,
+          name: 'Test Görev 3',
+          status: 'Devam Eden',
+          date: '2022-08-23',
+          tags: '',
+          priority: 'Orta',
+        }
+      ],
+    }
   }
+}
 </script>
+<style scoped>
+.input-group{
+  width: fit-content;
+}
+.table-top-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+</style>

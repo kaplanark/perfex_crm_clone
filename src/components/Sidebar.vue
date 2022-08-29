@@ -18,7 +18,7 @@ export default {
 <style scoped>
 #aside {
     width: 210px;
-    bottom: 0;
+    bottom: -8px;
     float: left;
     left: 0;
     position: absolute;

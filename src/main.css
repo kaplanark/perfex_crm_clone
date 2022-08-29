@@ -1,0 +1,14 @@
+.dropdown-from {
+  width: 100%;
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+  }
+  .dropdown-menu {
+    width: 100%;
+    font-size: 14px;
+  }
+}

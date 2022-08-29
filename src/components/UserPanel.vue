@@ -1,6 +1,7 @@
 <template>
     <b-card no-body class="border-0 h-100">
-        <b-tabs content-class="mt-3" fill lazy>
+        <b-tabs content-class="mt-3 content-class" fill lazy active-tab-class="active-tab-class" active-nav-item-class="active-nav-item-class"
+                    nav-class="nav-class" nav-wrapper-class="wrapper-class">
             <b-tab active title-link-class="use-tab-link">
                 <template #title>
                     <div class="nav-link-wrapper">
@@ -70,7 +71,7 @@ export default {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    color: #008ed1;
+    color: #000;
     transition: all 0.15s;
 }
 </style>
@@ -80,7 +81,7 @@ export default {
 }
 
 .use-tab-link.active .nav-link-wrapper {
-    color: #000;
+    color: #0d6efd;
 }
 
 .nav-tabs .nav-link {
