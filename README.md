@@ -1,4 +1,10 @@
-# perfex_crm
+# Perfex Crm Vue.js Clone
+
+This is a clone of Perfex CRM using Vue.js and Laravel.
+
+## Screenshots
+
+<img src="./screenshot/screen.gif" width="100%" />
 
 ## Project setup
 ```
