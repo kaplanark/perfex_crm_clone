@@ -1,6 +1,6 @@
 # Perfex Crm Vue.js Clone
 
-This is a clone of Perfex CRM using Vue.js and Laravel.
+This is a clone of Perfex CRM using Vue.js.
 
 ## Screenshots
 
