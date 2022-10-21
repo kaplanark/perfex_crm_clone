@@ -2,6 +2,8 @@
 
 This is a clone of Perfex CRM using Vue.js.
 
+<a href="https://perfexcrm.netlify.app/">LIVE</a>
+
 ## Screenshots
 
 <img src="./screenshot/screen.gif" width="100%" />
